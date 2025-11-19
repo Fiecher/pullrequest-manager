@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   pullrequest-manager:
     build: .
@@ -15,6 +13,8 @@ services:
     depends_on:
       db:
         condition: service_healthy
+      migrate:
+        condition: service_completed_successfully
     restart: on-failure
     networks:
       - internal
@@ -31,7 +31,6 @@ services:
       POSTGRES_PASSWORD: password
       POSTGRES_DB: pullrequest
     volumes:
-      - ./db/migrations/pg:/docker-entrypoint-initdb.d
       - postgres_data:/var/lib/postgresql/data
     ports:
       - "5432:5432"
@@ -43,6 +42,24 @@ services:
     restart: unless-stopped
     networks:
       - internal
+
+  migrate:
+    image: migrate/migrate:latest
+    command: [
+      "-path", "/migrations/pg",
+      "-database", "postgres://postgres:password@db:5432/pullrequest?sslmode=disable",
+      "up"
+    ]
+    environment:
+      DATABASE_URL: postgres://postgres:password@db:5432/pullrequest?sslmode=disable
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes:
+      - ./database/migrations:/migrations
+    networks:
+      - internal
+    restart: no
 
 volumes:
   postgres_data:
