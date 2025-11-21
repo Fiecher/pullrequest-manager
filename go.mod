@@ -1,4 +1,4 @@
-module pullrequest-manager
+module pullrequest-inator
 
 go 1.24
 

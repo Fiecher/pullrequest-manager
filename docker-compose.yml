@@ -1,5 +1,5 @@
 services:
-  pullrequest-manager:
+  pullrequest-inator:
     build: .
     ports:
       - "8080:8080"

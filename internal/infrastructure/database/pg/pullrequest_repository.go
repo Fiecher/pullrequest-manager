@@ -4,7 +4,7 @@ import (
 	"context"
 	"errors"
 	"fmt"
-	"pullrequest-manager/internal/domain/models"
+	"pullrequest-inator/internal/domain/models"
 	"time"
 
 	"github.com/google/uuid"

@@ -4,8 +4,8 @@ import (
 	"context"
 	"log"
 	"os"
-	"pullrequest-manager/internal/application/services"
-	"pullrequest-manager/internal/infrastructure/database/pg"
+	"pullrequest-inator/internal/application/services"
+	"pullrequest-inator/internal/infrastructure/database/pg"
 
 	"github.com/jackc/pgx/v5/pgxpool"
 )

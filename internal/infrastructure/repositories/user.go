@@ -1,7 +1,7 @@
 package repositories
 
 import (
-	"pullrequest-manager/internal/domain/models"
+	"pullrequest-inator/internal/domain/models"
 
 	"github.com/google/uuid"
 )

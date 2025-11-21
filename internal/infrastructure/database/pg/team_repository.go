@@ -3,7 +3,7 @@ package pg
 import (
 	"context"
 	"errors"
-	"pullrequest-manager/internal/domain/models"
+	"pullrequest-inator/internal/domain/models"
 
 	"github.com/google/uuid"
 	"github.com/jackc/pgx/v5"
