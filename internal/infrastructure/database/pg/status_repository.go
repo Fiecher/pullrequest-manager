@@ -25,7 +25,7 @@ const (
 	listStatusesQuery  = `SELECT id, name FROM pull_request_statuses ORDER BY name`
 )
 
-func (r *StatusRepository) GetByID(ctx context.Context, id uuid.UUID) (*models.Status, error) {
+func (r *StatusRepository) FindByID(ctx context.Context, id uuid.UUID) (*models.Status, error) {
 	var s models.Status
 	if err := r.db.QueryRow(ctx, getStatusByIDQuery, id).Scan(&s.ID, &s.Name); err != nil {
 		if errors.Is(err, pgx.ErrNoRows) {
@@ -36,7 +36,7 @@ func (r *StatusRepository) GetByID(ctx context.Context, id uuid.UUID) (*models.S
 	return &s, nil
 }
 
-func (r *StatusRepository) List(ctx context.Context) ([]*models.Status, error) {
+func (r *StatusRepository) FindAll(ctx context.Context) ([]*models.Status, error) {
 	rows, err := r.db.Query(ctx, listStatusesQuery)
 	if err != nil {
 		return nil, err

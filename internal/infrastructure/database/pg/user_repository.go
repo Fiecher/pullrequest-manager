@@ -42,7 +42,7 @@ func (r *UserRepository) FindByID(ctx context.Context, id uuid.UUID) (*models.Us
 	u := models.User{}
 
 	err := r.db.QueryRow(ctx, selectUserByIDQuery, id).
-		Scan(&u.ID, &u.Username, &u.IsActive, &u.CreatedAt, &u.UpdatedAt) // Добавлены поля времени, если они есть
+		Scan(&u.ID, &u.Username, &u.IsActive, &u.CreatedAt, &u.UpdatedAt)
 
 	if errors.Is(err, pgx.ErrNoRows) {
 		return nil, ErrUserNotFound

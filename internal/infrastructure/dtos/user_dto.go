@@ -3,12 +3,18 @@ package dtos
 import "github.com/google/uuid"
 
 type UserDTO struct {
-	ID       uuid.UUID `json:"id"`
+	UserID   uuid.UUID `json:"user_id"`
 	Username string    `json:"username"`
+	TeamName string    `json:"team_name"`
 	IsActive bool      `json:"is_active"`
 }
 
-type UserTeamDTO struct {
-	User     *UserDTO `json:"user"`
-	TeamName string   `json:"team_name"`
+type UserSetActiveRequestDTO struct {
+	UserID   uuid.UUID `json:"user_id"`
+	IsActive bool      `json:"is_active"`
+}
+
+type UserGetReviewResponseDTO struct {
+	UserID       uuid.UUID             `json:"user_id"`
+	PullRequests []PullRequestShortDTO `json:"pull_requests"`
 }

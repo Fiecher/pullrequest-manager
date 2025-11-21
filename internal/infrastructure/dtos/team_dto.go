@@ -2,14 +2,13 @@ package dtos
 
 import "github.com/google/uuid"
 
-type TeamDTO struct {
-	ID      uuid.UUID  `json:"id"`
-	Name    string     `json:"name"`
-	UserIDs uuid.UUIDs `json:"user_ids"`
+type TeamMemberDTO struct {
+	UserID   uuid.UUID `json:"user_id"`
+	Username string    `json:"username"`
+	IsActive bool      `json:"is_active"`
 }
 
-type TeamUsersDTO struct {
-	ID        uuid.UUID  `json:"id"`
-	TeamName  string     `json:"team_name"`
-	TeamUsers []*UserDTO `json:"team_users"`
+type TeamDTO struct {
+	TeamName string          `json:"team_name"`
+	Members  []TeamMemberDTO `json:"members"`
 }

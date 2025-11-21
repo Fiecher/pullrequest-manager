@@ -7,20 +7,23 @@ import (
 )
 
 type PullRequestDTO struct {
-	ID          uuid.UUID  `json:"id"`
-	Title       string     `json:"title"`
-	AuthorID    uuid.UUID  `json:"author_id"`
-	Status      StatusDTO  `json:"status"`
-	MergedAt    *time.Time `json:"merged_at,omitempty"`
-	ReviewerIDs uuid.UUIDs `json:"reviewer_ids"`
+	PullRequestID     uuid.UUID   `json:"pull_request_id"`
+	PullRequestName   string      `json:"pull_request_name"`
+	AuthorID          uuid.UUID   `json:"author_id"`
+	Status            string      `json:"status"`
+	AssignedReviewers []uuid.UUID `json:"assigned_reviewers"`
+	CreatedAt         *time.Time  `json:"createdAt,omitempty"`
+	MergedAt          *time.Time  `json:"mergedAt,omitempty"`
 }
 
-type PullRequestNewReviewerDTO struct {
-	PullRequest   *PullRequestDTO `json:"pull_request"`
-	NewReviewerID uuid.UUID       `json:"new_reviewer_id"`
+type PullRequestShortDTO struct {
+	PullRequestID   uuid.UUID `json:"pull_request_id"`
+	PullRequestName string    `json:"pull_request_name"`
+	AuthorID        uuid.UUID `json:"author_id"`
+	Status          string    `json:"status"`
 }
 
-type ReassignReviewerResponse struct {
-	NewReviewerID uuid.UUID      `json:"new_reviewer_id"`
-	PullRequest   PullRequestDTO `json:"pull_request"`
+type ReassignReviewerResponseDTO struct {
+	Pr         PullRequestDTO `json:"pr"`
+	ReplacedBy uuid.UUID      `json:"replaced_by"`
 }
