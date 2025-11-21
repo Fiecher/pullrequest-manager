@@ -1,6 +1,7 @@
 package repositories
 
 import (
+	"context"
 	"pullrequest-manager/internal/domain/models"
 
 	"github.com/google/uuid"
@@ -8,5 +9,5 @@ import (
 
 type PullRequest interface {
 	Repository[models.PullRequest, uuid.UUID]
-	FindByAuthor(userID uuid.UUID) ([]*models.PullRequest, error)
+	FindByAuthor(ctx context.Context, userID uuid.UUID) ([]*models.PullRequest, error)
 }
