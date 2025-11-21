@@ -6,6 +6,6 @@ import (
 	"github.com/google/uuid"
 )
 
-type User struct {
+type User interface {
 	Repository[models.User, uuid.UUID]
 }
