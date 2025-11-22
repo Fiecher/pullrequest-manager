@@ -4,6 +4,7 @@ services:
     ports:
       - "8080:8080"
     environment:
+      DATABASE_URL: "postgres://postgres:password@db:5432/pullrequest?sslmode=disable"
       DATABASE_HOST: db
       DATABASE_PORT: 5432
       DATABASE_USER: postgres
